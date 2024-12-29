@@ -45,3 +45,27 @@ app.get('/sum', (req, res) => {
   let num2 = parseInt(req.query.num2);
   res.send(sum(num1, num2));
 });
+//calculate fuel cost
+function getFuelCost(distance,fuelEfficiency,fuelPrice)
+{
+  let fuelCost = (distance / fuelEfficiency) * fuelPrice;
+  return fuelCost;
+}
+app.get('/fuel-cost', (req,res) => {
+  let distance = parseFloat(req.query.distance);
+  let fuelEfficiency = parseFloat(req.query.fuelEfficiency);
+  let fuelPrice = parseFloat(req.query.fuelPrice);
+  res.send(getFuelCost(distance,fuelEfficiency,fuelPrice).toString());
+});
+//calculate the area of rectangle
+function calculateRectangleArea(length,width)
+{
+  let area = length * width;
+  return area;
+}
+app.get('/rectangle-area', (req,res) => {
+  let length = parseFloat(req.query.length);
+  let width = parseFloat(req.query.width);
+  res.send(calculateRectangleArea(length,width).toString());
+});
+
